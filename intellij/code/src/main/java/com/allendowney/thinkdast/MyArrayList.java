@@ -45,7 +45,15 @@ public class MyArrayList<T> implements List<T> {
 	@Override
 	public boolean add(T element) {
 		// TODO: FILL THIS IN!
-		return false;
+		if (size >= array.length) {
+			// 큰 배열을  만들고 요소들을 복사합니다
+			T[] bigger = (T[]) new Object[array.length * 2];
+			System.arraycopy(array, 0, bigger, 0, array.length);
+			array = bigger;
+		}
+		array[size] = element;
+		size++;
+		return true;
 	}
 
 	@Override
@@ -110,6 +118,9 @@ public class MyArrayList<T> implements List<T> {
 
 	@Override
 	public int indexOf(Object target) {
+		for (int i = 0; i < array.length; i++) {
+			if(array[i].equals(target)) return i;
+		}
 		// TODO: FILL THIS IN!
 		return -1;
 	}
@@ -182,7 +193,12 @@ public class MyArrayList<T> implements List<T> {
 	@Override
 	public T remove(int index) {
 		// TODO: FILL THIS IN!
-		return null;
+		T old = get(index);
+		for (int i = index; i < size - 1; i++) {
+			array[i] = array[i+1];
+		}
+		size--;
+		return old;
 	}
 
 	@Override
@@ -201,8 +217,10 @@ public class MyArrayList<T> implements List<T> {
 
 	@Override
 	public T set(int index, T element) {
+		T old = get(index);
+		array[index] = element;
 		// TODO: FILL THIS IN!
-		return null;
+		return old;
 	}
 
 	@Override

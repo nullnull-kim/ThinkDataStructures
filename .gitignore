@@ -7,6 +7,9 @@ build/
 
 ##
 intellij/**
+**/.idea
+.idea/**
+
 
 ### STS ###
 .apt_generated

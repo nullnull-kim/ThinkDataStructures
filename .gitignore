@@ -10,6 +10,9 @@ build/
 .idea/**
 /.idea/
 intellij/code/.gradle/
+intellij/code/.idea/
+intellij/solutions/.gradle/
+intellij/solutions/.idea/
 
 
 ### STS ###

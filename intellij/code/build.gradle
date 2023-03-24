@@ -15,4 +15,5 @@ dependencies {
     implementation 'org.jfree:jfreechart:1.0.19'
     implementation 'org.jsoup:jsoup:1.8.3'
     implementation 'redis.clients:jedis:2.8.0'
+    implementation 'junit:junit:4.13.1'
 }

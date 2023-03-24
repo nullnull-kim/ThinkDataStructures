@@ -82,6 +82,36 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public void add(int index, E element) {
+		if (index - 1 > size() || index < 0) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		//오답
+//		if (index == 0) {
+//			head = new Node(element);
+//		} else {
+//			Node node = head;
+//			for (int i = index; i != 0; i--, node = node.next) {}
+//
+//			Node temp = node;
+//			node = new Node(element);
+//			node.next = temp;
+//		}
+		if (index == 0) {
+			//오답
+//			Node temp = head;
+//			head = (Node) element;
+//			head.next = temp;
+			head = new Node(element, head);
+		} else {
+			Node node = getNode(index - 1);
+			// 오답
+//			Node next = node.next;
+//			node.next = new Node(element, next);
+			node.next = new Node(element, node.next);
+		}
+		// size ++를 안해줌
+		size ++;
 		//TODO: FILL THIS IN!
 	}
 
@@ -143,6 +173,13 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public int indexOf(Object target) {
+		Node node = head;
+		for (int i = 0; i < size; i++) {
+			if (equals(target, node.data)) {
+				return i;
+			}
+			node = node.next;
+		}
 		//TODO: FILL THIS IN!
 		return -1;
 	}
@@ -208,8 +245,20 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public E remove(int index) {
-		//TODO: FILL THIS IN!
-		return null;
+//		Node node = getNode(index);
+//		if (equals(node, head)) {
+		E element = get(index);
+		if (index == 0) {
+			head = head.next;
+		} else {
+//			for (int i = index; i < size; i++) {
+//				node = node.next;
+//			}
+			Node node = getNode(index - 1);
+			node.next = node.next.next;
+		}
+		size--;
+		return element;
 	}
 
 	@Override
